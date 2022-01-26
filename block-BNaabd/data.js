@@ -1,9 +1,9 @@
 var http = require('http');
-var qs = require('qs');
-const { parse } = require('querystring');
+const qs = require('querystring');
 
 http.createServer( ( req, res )=>{
     console.log(req.method);
+    var dataFormat = req.headers['content-type'];
     var store = '';
     req.on( 'data', (chunk)=>{
         store += chunk;
@@ -15,7 +15,7 @@ http.createServer( ( req, res )=>{
         }
         if ( dataFormat === 'application/x-www-form-urlencoded' ) {
             var parseData = qs.parse(store);
-            res.end(JSON.stringify(parseData));
+            res.end(JSON.stringify(parseData)+"zehan");
         }
     })
 } ).listen( 7000, ()=>{
