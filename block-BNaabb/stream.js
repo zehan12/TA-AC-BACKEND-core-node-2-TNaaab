@@ -4,11 +4,12 @@ const { connected } = require('process');
 http.createServer(( req, res )=>{
     console.log(req.method);
     var store = '';
-    res.on('data',(chunk)=>{
+    req.on('data',(chunk)=>{
         store = store + chunk;
     });
-    res.on('end',()=>{
-        res.write(store);
+    req.on('end',()=>{
+        console.log(store);
+        res.write(store + "zehan" );
         res.end();
     });
 }).listen(3456,()=>{
